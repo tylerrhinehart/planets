@@ -1,31 +1,31 @@
 var express = require('express')
 var router = express.Router()
-var stars = require('../models/star')
+var species = require('../models/species')
 
 router
   .get('/', (req, res, next) => {
-    stars.find(req.query)
-      .then(stars => {
-        res.send(stars)
+    species.find(req.query)
+      .then(species => {
+        res.send(species)
       })
       .catch(next)
   })
   .post('/', (req, res, next) => {
-    stars.create(req.body)
-      .then(star =>{
-        res.send(star)
+    species.create(req.body)
+      .then(species =>{
+        res.send(specie)
       }).catch(next)
   })
   .put('/:id', (req, res, next)=>{
     var id = req.params.id
-    stars.findByIdAndUpdate(id, req.body)
-      .then(star =>{
+    species.findByIdAndUpdate(id, req.body)
+      .then(species =>{
         res.send({message: 'Successfully Updated'})
       }).catch(next)
   })
   .delete('/:id', (req, res, next)=>{
-    stars.findByIdAndRemove(req.params.id)
-      .then(star => {
+    species.findByIdAndRemove(req.params.id)
+      .then(species => {
         res.send({message: 'Successfully Removed'})
       }).catch(next)
   })
