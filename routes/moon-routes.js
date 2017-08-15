@@ -3,13 +3,13 @@ var router = express.Router()
 var moons = require('../models/moon')
 
 router
-  .get('/', (req, res, next) => {
-    moons.find(req.query)
-      .then(moons => {
-        res.send(moons)
-      })
-      .catch(next)
-  })
+  // .get('/', (req, res, next) => {
+  //   moons.find(req.query)
+  //     .then(moons => {
+  //       res.send(moons)
+  //     })
+  //     .catch(next)
+  // })
   .post('/', (req, res, next) => {
     moons.create(req.body)
       .then(moon =>{

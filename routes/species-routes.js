@@ -3,13 +3,13 @@ var router = express.Router()
 var species = require('../models/species')
 
 router
-  .get('/', (req, res, next) => {
-    species.find(req.query)
-      .then(species => {
-        res.send(species)
-      })
-      .catch(next)
-  })
+  // .get('/', (req, res, next) => {
+  //   species.find(req.query)
+  //     .then(species => {
+  //       res.send(species)
+  //     })
+  //     .catch(next)
+  // })
   .post('/', (req, res, next) => {
     species.create(req.body)
       .then(species =>{

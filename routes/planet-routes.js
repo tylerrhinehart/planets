@@ -3,13 +3,13 @@ var router = express.Router()
 var planets = require('../models/planet')
 
 router
-  .get('/', (req, res, next) => {
-    planets.find(req.query)
-      .then(planets => {
-        res.send(planets)
-      })
-      .catch(next)
-  })
+  // .get('/', (req, res, next) => {
+  //   planets.find(req.query)
+  //     .then(planets => {
+  //       res.send(planets)
+  //     })
+  //     .catch(next)
+  // })
   .post('/', (req, res, next) => {
     planets.create(req.body)
       .then(planet =>{

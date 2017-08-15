@@ -6,6 +6,7 @@ var planets = require('../models/planet')
 var moons = require('../models/moon')
 var species = require('../models/species')
 
+//Standard routes get/push/put/delete 
 router
   .get('/', (req, res, next) => {
     galaxies.find(req.query)
@@ -14,7 +15,31 @@ router
       })
       .catch(next)
   })
-  // CUSTOM ROUTES
+  .post('/', (req, res, next) => {
+    galaxies.create(req.body)
+      .then(galaxy => {
+        res.send(galaxy)
+      }).catch(next)
+  })
+  .put('/:id', (req, res, next) => {
+    var id = req.params.id
+    galaxies.findByIdAndUpdate(id, req.body)
+      .then(galaxy => {
+        res.send({ message: 'Successfully Updated' })
+      }).catch(next)
+  })
+  .delete('/:id', (req, res, next) => {
+    galaxies.findByIdAndRemove(req.params.id)
+      .then(galaxy => {
+        res.send({ message: 'Successfully Removed' })
+      }).catch(next)
+  })
+
+
+
+
+// CUSTOM ROUTES
+router
   .get('/:id/stars', (req, res, next) => {
     stars.find({ galaxyId: req.params.id })
       .then(stars => {
@@ -73,25 +98,6 @@ router
     species.find({ galaxyId: req.params.id, _id: req.params.speciesId })
       .then(species => {
         res.send(species)
-      }).catch(next)
-  })
-  .post('/', (req, res, next) => {
-    galaxies.create(req.body)
-      .then(galaxy => {
-        res.send(galaxy)
-      }).catch(next)
-  })
-  .put('/:id', (req, res, next) => {
-    var id = req.params.id
-    galaxies.findByIdAndUpdate(id, req.body)
-      .then(galaxy => {
-        res.send({ message: 'Successfully Updated' })
-      }).catch(next)
-  })
-  .delete('/:id', (req, res, next) => {
-    galaxies.findByIdAndRemove(req.params.id)
-      .then(galaxy => {
-        res.send({ message: 'Successfully Removed' })
       }).catch(next)
   })
 

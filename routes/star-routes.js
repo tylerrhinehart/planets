@@ -2,33 +2,36 @@ var express = require('express')
 var router = express.Router()
 var stars = require('../models/star')
 
+//Standard routes
 router
-  .get('/', (req, res, next) => {
-    stars.find(req.query)
-      .then(stars => {
-        res.send(stars)
-      })
-      .catch(next)
-  })
+  // .get('/', (req, res, next) => {
+  //   stars.find(req.query)
+  //     .then(stars => {
+  //       res.send(stars)
+  //     })
+  //     .catch(next)
+  // })
   .post('/', (req, res, next) => {
     stars.create(req.body)
-      .then(star =>{
+      .then(star => {
         res.send(star)
       }).catch(next)
   })
-  .put('/:id', (req, res, next)=>{
+  .put('/:id', (req, res, next) => {
     var id = req.params.id
     stars.findByIdAndUpdate(id, req.body)
-      .then(star =>{
-        res.send({message: 'Successfully Updated'})
+      .then(star => {
+        res.send({ message: 'Successfully Updated' })
       }).catch(next)
   })
-  .delete('/:id', (req, res, next)=>{
+  .delete('/:id', (req, res, next) => {
     stars.findByIdAndRemove(req.params.id)
       .then(star => {
-        res.send({message: 'Successfully Removed'})
+        res.send({ message: 'Successfully Removed' })
       }).catch(next)
   })
+
+//Custom routes
 
 // ERROR HANDLER
 router.use('/', (err, req, res, next) => {
