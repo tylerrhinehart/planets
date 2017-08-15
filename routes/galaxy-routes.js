@@ -6,6 +6,8 @@ var planets = require('../models/planet')
 var moons = require('../models/moon')
 var species = require('../models/species')
 
+//sessions use JavaScript Web Tokens (JWT) to identify requests header
+
 //Standard routes get/push/put/delete 
 router
   .get('/', (req, res, next) => {
